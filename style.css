@@ -1,0 +1,31 @@
+body {
+    background-color: #1d3557;
+    color: #f1faee;
+}
+
+.container {
+    max-width: 600px;
+}
+
+.btn,
+input,
+.input-group-text {
+    background-color: #457b9d;
+    color: #a8dadc;
+    outline: none !important;
+    box-shadow: none !important;
+    border: none;
+}
+
+.form-control {
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+}
+
+.btn:focus {
+    outline: none !important;
+}
+
+.btn:hover {
+    color: white;
+}
