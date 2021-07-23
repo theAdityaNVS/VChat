@@ -11,14 +11,14 @@ body {
 input,
 .input-group-text {
     background-color: #457b9d;
-    color: #a8dadc;
+    color: #f1faee;
     outline: none !important;
     box-shadow: none !important;
     border: none;
 }
 
 .form-control {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.8);
     border: none;
 }
 
@@ -35,7 +35,7 @@ input,
 }
 
 .username:hover {
-    cursor: none !important;
+    cursor: default !important;
 }
 
 .time {
@@ -52,5 +52,14 @@ input,
 
 .chat {
     text-transform: capitalize;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.update-msg {
+    text-align: center;
+    margin: 20px auto;
+}
+
+.tagline {
+    font-size: large;
 }
