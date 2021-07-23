@@ -33,26 +33,27 @@ class Chatroom {
     updateRoom(room) {
         this.room = room;
         console.log('room updated');
-        if (this.unsub);
-        this.unsub();
+        if (this.unsub) {
+            this.unsub();
+        };
     }
 }
 
-const chatroom = new Chatroom('gaming', 'shaun')
-    // chatroom.addChat('test chat')
-    //     .then(() => console.log('chat added'))
-    //     .catch(err => console.log(err));
+// const chatroom = new Chatroom('gaming', 'shaun')
+// // chatroom.addChat('test chat')
+// //     .then(() => console.log('chat added'))
+// //     .catch(err => console.log(err));
 
-chatroom.getChats((data) => {
-    console.log(data);
-})
+// chatroom.getChats((data) => {
+//     console.log(data);
+// })
 
 // chatroom.updateRoom('general');
-setTimeout(() => {
-    chatroom.updateRoom('general');
-    chatroom.updateName('yoshi');
-    chatroom.getChats((data) => {
-        console.log(data)
-    });
-    chatroom.addChat('hello');
-}, 3000);
+// setTimeout(() => {
+//     chatroom.updateRoom('general');
+//     chatroom.updateName('yoshi');
+//     chatroom.getChats((data) => {
+//         console.log(data)
+//     });
+//     chatroom.addChat('hello');
+// }, 3000);
