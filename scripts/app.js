@@ -19,9 +19,10 @@ newNameForm.addEventListener('submit', (e) => {
     const newName = newNameForm.name.value.trim();
     chatroom.updateName(newName);
     newNameForm.reset();
-    updateMsg.innerHTML = `Name has been updated to ${newName}`;
+    // Use textContent to prevent XSS in username update message
+    updateMsg.textContent = `Name has been updated to ${newName}`;
     setTimeout(() => {
-        updateMsg.innerHTML = '';
+        updateMsg.textContent = '';
     }, 3000);
 });
 
