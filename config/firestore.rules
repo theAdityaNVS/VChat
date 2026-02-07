@@ -1,0 +1,26 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Chat messages collection
+    match /chats/{chatId} {
+      // Anyone can read messages
+      allow read: if true;
+      
+      // Only allow write if:
+      // 1. Message has required fields
+      // 2. Message is not too long (prevent spam)
+      // 3. Username is not empty
+      allow create: if request.resource.data.keys().hasAll(['message', 'username', 'room', 'created_at'])
+                    && request.resource.data.message is string
+                    && request.resource.data.message.size() > 0
+                    && request.resource.data.message.size() <= 500
+                    && request.resource.data.username is string
+                    && request.resource.data.username.size() > 0
+                    && request.resource.data.username.size() <= 50
+                    && request.resource.data.room in ['general', 'gaming', 'music', 'coding'];
+      
+      // Prevent updates and deletes
+      allow update, delete: if false;
+    }
+  }
+}
