@@ -18,9 +18,10 @@ The application follows a class-based Object-Oriented Programming (OOP) pattern 
 ### Tech Stack
 -   **Backend**: Firebase Firestore (NoSQL Database).
 -   **Frontend**: Vanilla JavaScript (ES6+), HTML5, CSS3.
--   **Styling**: Bootstrap framework.
+-   **Styling**: Bootstrap 5 framework.
 -   **Utilities**: `date-fns` for timestamp formatting.
--   **Deployment**: Heroku (via PHP buildpack for static serving).
+-   **Deployment**: Vercel (modern static hosting).
+-   **Security**: XSS-protected DOM rendering (February 2026 update).
 
 ## 4. Functional Requirements
 
@@ -62,9 +63,46 @@ The application follows a class-based Object-Oriented Programming (OOP) pattern 
 
 ## 6. Non-Functional Requirements
 -   **Performance**: Real-time latency should be minimal, relying on Firestore's efficient socket connections.
--   **Security**: Firebase credentials are client-side; security relies on Firestore Security Rules (configured in Firebase Console).
+-   **Security**: 
+    -   Firebase credentials are client-side (safe by design - security via Firestore Rules).
+    -   XSS protection via safe DOM element creation (no innerHTML).
+    -   Firestore Security Rules enforce message validation (see `config/firestore.rules`).
 -   **Maintainability**: Code must strictly adhere to the separation of concerns (no DOM logic in `chat.js`, no Firebase logic in `ui.js`).
 
-## 7. Future Roadmap
--   **Video Chat**: Integration of video calling capabilities.
--   **Enhanced Authentication**: Implementation of robust user auth (e.g., Firebase Auth) beyond simple local storage.
+## 7. Project Structure
+```
+VChat/
+├── index.html          # Main HTML + Firebase config
+├── scripts/
+│   ├── chat.js        # Data layer (Chatroom class)
+│   ├── ui.js          # Presentation layer (ChatUI class)
+│   └── app.js         # Application layer (event handlers)
+├── styles/
+│   └── style.css      # Custom styles
+├── config/
+│   ├── firestore.rules    # Firestore security rules
+│   └── vercel.json        # Vercel deployment config
+├── docs/
+│   ├── PRD.md             # Product requirements (this file)
+│   ├── SPEC.md            # Technical specification
+│   ├── CODE_AUDIT.md      # Code health check
+│   ├── DEPLOY.md          # Deployment guide
+│   ├── UPGRADE_STACK.md   # Migration to V2 guide
+│   └── V2_ROADMAP.md      # V2 vision and roadmap
+└── README.md          # Project overview
+```
+
+## 8. Future Roadmap
+
+### V1 Enhancements (Current)
+-   ✅ **XSS Protection**: Implemented safe DOM rendering (February 2026).
+-   ✅ **Deployment**: Migrated to Vercel for better performance.
+-   ✅ **Documentation**: Comprehensive docs in `/docs` folder.
+
+### V2 Vision (Planned - See docs/V2_ROADMAP.md)
+-   **Video Chat**: Integration of WebRTC video calling capabilities.
+-   **Enhanced Authentication**: Firebase Auth (Google, GitHub, Email).
+-   **Modern Stack**: React + TypeScript + Tailwind CSS.
+-   **Rich Features**: Message reactions, editing, file uploads, typing indicators.
+
+For detailed V2 plans, see [V2_ROADMAP.md](V2_ROADMAP.md) and [UPGRADE_STACK.md](UPGRADE_STACK.md).

@@ -11,8 +11,10 @@ The application implements a simplified MVC (Model-View-Controller) pattern:
 
 ## 3. Class Definitions
 
-### 3.1 Chatroom (`scripts/chat.js`)
+### 3.1 Chatroom (`scripts/chat.js`) - Data Layer
 Responsible for all database interactions and state management regarding the chat connection.
+
+**Current Implementation**: Class-based OOP approach with Firebase Firestore integration.
 
 **Properties:**
 - `room` (string): Current chat room identifier (e.g., 'general').
@@ -38,8 +40,10 @@ Responsible for all database interactions and state management regarding the cha
   - Updates `this.room`.
   - Executes `this.unsub()` if it exists to detach the previous listener.
 
-### 3.2 ChatUI (`scripts/ui.js`)
+### 3.2 ChatUI (`scripts/ui.js`) - Presentation Layer
 Responsible for rendering the chat interface and formatting data.
+
+**Security Note**: V1 now uses safe DOM element creation (not innerHTML) to prevent XSS attacks.
 
 **Properties:**
 - `list` (HTMLElement): The DOM element (`<ul>`) where chat messages are appended.
@@ -76,5 +80,7 @@ Responsible for rendering the chat interface and formatting data.
 - **Room Switching**: Listens for clicks on room buttons (using IDs matching room names), clears the UI, updates the room in `Chatroom`, and re-subscribes to the chat stream.
 
 ## 6. Deployment
-- **Platform**: Heroku.
-- **Method**: PHP Buildpack (uses `composer.json` and `index.php` to serve static files).
+- **Platform**: Vercel (modern static hosting)
+- **Configuration**: See `config/vercel.json`
+- **Security Rules**: Firestore rules in `config/firestore.rules`
+- **Old Method**: Previously Heroku via PHP buildpack (deprecated)
