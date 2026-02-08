@@ -72,12 +72,15 @@
         measurementId: "G-YK0ZX8HDMN",
       };
 
+      // Declare db globally
+      var db;
+
       try {
         firebase.initializeApp(firebaseConfig);
         console.log("✅ Firebase initialized successfully");
         firebase.analytics();
         console.log("✅ Analytics initialized");
-        const db = firebase.firestore();
+        db = firebase.firestore();
         console.log("✅ Firestore initialized");
 
         // Test Firestore connection
